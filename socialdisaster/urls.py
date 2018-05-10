@@ -16,10 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^selecttags/$', views.selecttags, name='selecttags'),
+    url(r'^dammap/', TemplateView.as_view(template_name="dammap.html"),name='dammap'),
+    url(r'^medmap/', TemplateView.as_view(template_name="medmap.html"),name='medmap'),
+    url(r'^sheltmap/', TemplateView.as_view(template_name="sheltmap.html"),name='sheltmap'),
+    url(r'^evacmap/', TemplateView.as_view(template_name="evactmap.html"),name='evacmap'),
     url(r'^customtags/$', views.customtags, name= 'customtags'),
     url(r'^admin/', admin.site.urls),
 ]

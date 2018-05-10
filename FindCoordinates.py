@@ -10,7 +10,7 @@ import os
 
 def getCoords():
     sql = sqlite3.connect('tweets.db')
-    df = pd.read_sql_query("SELECT * FROM evacuationtweets", sql)
+    df = pd.read_sql_query("SELECT * FROM medTweets", sql)
     df['coords'] = ""
     #df = df[pd.notnull(df['chunks'])]
     df = df.drop(['level_0'], axis = 1)
@@ -44,7 +44,7 @@ def getCoords():
                 southeast = str(bounds['southwest']['lat']) + ',' + str(bounds['northeast']['lng'])
                 northwest = str(bounds['northeast']['lat']) + ',' + str(bounds['southwest']['lng'])
                 df['coords'][i] = (northeast+ ','+ southeast+',' + southwest+',' + northwest)
-    df.to_sql("evacuationCoords", sql, if_exists="replace")
+    df.to_sql("medCoords", sql, if_exists="replace")
 
 
 getCoords()
